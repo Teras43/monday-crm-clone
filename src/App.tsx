@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Dashboard, TicketPage } from "./pages";
+import { Nav } from "./components";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/ticket" element={<TicketPage />} />
+          {/* <Route path="/ticket/:id" element={<TicketPage editMode={true} />} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
+
+/** Attributions for images */
+// Logo - <a href="https://www.flaticon.com/free-icons/promotional" title="promotional icons">Promotional icons created by bsd - Flaticon</a>
+// Blank User - <a href="https://www.flaticon.com/free-icons/user" title="user icons">User icons created by Freepik - Flaticon</a>
