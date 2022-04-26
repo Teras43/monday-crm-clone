@@ -11,7 +11,8 @@ type Props = {
   color: string;
   ticket: {
     category: string;
-    color: string;
+    documentId: string;
+    color?: string;
     title: string;
     owner: string;
     avatar: string;
@@ -34,7 +35,7 @@ const TicketCard = ({ color, ticket }: Props) => {
         <PriorityDisplay priority={ticket.priority} />
         <ProgressDisplay progress={ticket.progress} />
       </Link>
-      <DeleteBlock />
+      <DeleteBlock documentId={ticket.documentId} />
     </div>
   );
 };

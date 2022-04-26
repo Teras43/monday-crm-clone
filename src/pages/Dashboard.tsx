@@ -1,10 +1,25 @@
 import { useState, useEffect, useContext } from "react";
 import { TicketCard } from "../components";
 import axios from "axios";
-import avatar from "../images/spike_duck.png";
+import CategoriesContext from "../context";
+// import avatar from "../images/spike_duck.png";
+
+type ticket = {
+  status: string;
+  progress: number;
+  timestamp: string;
+  title: string;
+  description: string;
+  category: string;
+  priority: number;
+  owner: string;
+  avatar: string;
+  documentId: string;
+};
 
 const Dashboard = () => {
-  const [tickets, setTickets] = useState<[]>([]);
+  const [tickets, setTickets] = useState<ticket[]>([]);
+  const { categories, setCategories } = useContext(CategoriesContext);
 
   useEffect(() => {
     const getTicketData = async () => {
@@ -23,6 +38,12 @@ const Dashboard = () => {
     };
     getTicketData();
   }, []);
+
+  useEffect(() => {
+    setCategories([...new Set(tickets?.map(({ category }) => category))]);
+  }, [tickets, setCategories]);
+
+  console.log("categories: ", categories);
 
   const colors = [
     "rgb(255,179,186)",
@@ -45,14 +66,17 @@ const Dashboard = () => {
             <div key={categoryIndex}>
               <h3>{uniqueCategory}</h3>
               {tickets
-                .filter((ticket: any) => ticket.category === uniqueCategory)
-                .map((filteredTicket, _index) => (
-                  <TicketCard
-                    key={_index}
-                    color={colors[categoryIndex] || colors[0]}
-                    ticket={filteredTicket}
-                  />
-                ))}
+                .filter((ticket: ticket) => ticket.category === uniqueCategory)
+                .map((filteredTicket, _index) => {
+                  console.log("filteredTicket: ", filteredTicket);
+                  return (
+                    <TicketCard
+                      key={_index}
+                      color={colors[categoryIndex] || colors[0]}
+                      ticket={filteredTicket}
+                    />
+                  );
+                })}
             </div>
           ))}
       </div>

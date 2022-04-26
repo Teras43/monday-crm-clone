@@ -3,7 +3,7 @@ import blankAvatar from "../images/user_blank.png";
 type Props = {
   ticket: {
     category: string;
-    color: string;
+    color?: string;
     title: string;
     owner: string;
     avatar: string;
