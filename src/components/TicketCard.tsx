@@ -27,7 +27,7 @@ type Props = {
 const TicketCard = ({ color, ticket }: Props) => {
   return (
     <div className="ticket-card">
-      <Link to={`/ticket/`} id="link">
+      <Link to={`/ticket/${ticket.documentId}`} id="link">
         <div className="ticket-color" style={{ backgroundColor: color }}></div>
         <h3>{ticket.title}</h3>
         <AvatarDisplay ticket={ticket} />

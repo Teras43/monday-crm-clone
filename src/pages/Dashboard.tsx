@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const getTicketData = async () => {
-      const response = await axios.get("http://localhost:8000/tickets");
+      const response = await axios.get("http://localhost:8000/tickets/");
       const dataObject = response.data.data;
       const arrayOfKeys = Object.keys(dataObject);
       const arrayOfData = Object.keys(dataObject).map((key) => dataObject[key]);
