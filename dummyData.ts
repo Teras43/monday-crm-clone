@@ -37,3 +37,5 @@ const tickets = [
     timestamp: "4-16-2022T15:47:00+0000",
   },
 ];
+
+export default tickets;

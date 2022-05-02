@@ -8,10 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const url =
-  "https://c7ed6d24-d064-4281-9035-b20610efca17-us-east1.apps.astra.datastax.com/api/rest/v2/namespaces/tickets/collections/tasks";
-const token =
-  "AstraCS:KcsjEbDYeMKAxAFOwjffHNct:1207ac5e336c500bb35d8c54eb441f57cf5cb7e65a7b63144bba6ab96e7ff36a";
+const url = process.env.URL;
+const token = process.env.ASTRA_TOKEN;
 
 app.get("/tickets", async (req, res) => {
   const options = {
